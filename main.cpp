@@ -5,6 +5,7 @@
 
 // OpenGL window manager (or X11 API linux, WinAPI windows, Cocoa API Mac)
 #include <GLFW/glfw3.h>
+#include "GLFWWindow.h"
 
 // Lib for 3D maths(not needed at current moment)
 // #include <glm/glm.hpp>
@@ -17,16 +18,11 @@ int main() {
     }
 
     // Creating window
-    auto window = glfwCreateWindow(1024, 768, "Tutorial 01", nullptr, nullptr);
-    if (window == nullptr) {
-        std::cerr << "Cannot open GLFW window" << std::endl;
-        // Close OpenGL window and terminate GLFW
-        glfwTerminate();
-        return 1;
-    }
+    GLFWWindow window(1024, 768, "Test 1");
+    window.Create();
 
     // Makes the context of the specified window current for the calling thread
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window.GetGLFWWindow());
 
     // Initialize GLEW
     if (glewInit() != GLEW_OK) {
@@ -36,10 +32,10 @@ int main() {
     }
 
     // Ensure we can capture the escape key being pressed below
-    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    window.SetInputMode(GLFW_STICKY_KEYS, GL_TRUE);
 
     // Dark blue background
-    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+    glClearColor(0.1f, 0.3f, 0.4f, 0.0f);
 
     // Check if the ESC key was pressed or the window was closed
     do {
@@ -50,12 +46,12 @@ int main() {
         // TODO
 
         // Swap buffers
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.GetGLFWWindow());
         glfwPollEvents();
     } while (
-            glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-            glfwWindowShouldClose(window) == 0
-    );
+            glfwGetKey(window.GetGLFWWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+            glfwWindowShouldClose(window.GetGLFWWindow()) == 0
+            );
 
     // Close OpenGL window and terminate GLFW
     glfwTerminate();

@@ -7,7 +7,7 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 
-add_executable(OpenGLTutorial main.cpp)
+add_executable(OpenGLTutorial main.cpp GLFWWindow.cpp GLFWWindow.h)
 
 target_link_libraries(OpenGLTutorial glfw)
 target_link_libraries(OpenGLTutorial OpenGL::GL)
