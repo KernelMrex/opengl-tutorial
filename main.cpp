@@ -27,7 +27,6 @@ int main() {
     // Initialize GLEW
     if (glewInit() != GLEW_OK) {
         std::cerr << "Failed to initialize GLEW" << std::endl;
-        glfwTerminate();
         return 1;
     }
 
@@ -52,8 +51,6 @@ int main() {
             glfwGetKey(window.GetGLFWWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS &&
             glfwWindowShouldClose(window.GetGLFWWindow()) == 0
             );
-
-    // Close OpenGL window and terminate GLFW
-    glfwTerminate();
+    
     return 0;
 }
