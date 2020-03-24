@@ -36,13 +36,42 @@ int main() {
     // Dark blue background
     glClearColor(0.1f, 0.3f, 0.4f, 0.0f);
 
+    // VAO
+    GLuint VertexArrayID;
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+
+    // Create rectangle model
+    static const GLfloat vertexBufferData[] = {
+            -1.0f, -1.0f, 0.0f,
+            1.0f, -1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+    };
+    GLuint vertexBuffer;
+    glGenBuffers(1, &vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
+
+
     // Check if the ESC key was pressed or the window was closed
     do {
         // Clear the screen. It's not mentioned before Tutorial 02, but it can cause flickering, so it's there nonetheless.
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Draw nothing
-        // TODO
+        // Draw rectangle
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+        glVertexAttribPointer(
+                0,
+                3,
+                GL_FLOAT,
+                GL_FALSE,
+                0,
+                (void *) 0
+        );
+
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDisableVertexAttribArray(0);
 
         // Swap buffers
         glfwSwapBuffers(window.GetGLFWWindow());
@@ -51,6 +80,6 @@ int main() {
             glfwGetKey(window.GetGLFWWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS &&
             glfwWindowShouldClose(window.GetGLFWWindow()) == 0
             );
-    
+
     return 0;
 }
