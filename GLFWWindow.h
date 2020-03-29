@@ -27,6 +27,11 @@ public:
     // Sets window input mode
     void SetInputMode(int mode, int value);
 
+    // Get key status when window focused
+    int GetKey(int keyCode);
+
+    bool ShouldClose();
+
 private:
     bool isInitialized = false;
     GLFWwindow *glfWindow{};

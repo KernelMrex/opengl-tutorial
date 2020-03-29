@@ -49,4 +49,12 @@ void GLFWWindow::SetInputMode(int mode, int value) {
     glfwSetInputMode(this->GetGLFWWindow(), mode, value);
 }
 
+int GLFWWindow::GetKey(int keyCode) {
+    return glfwGetKey(this->GetGLFWWindow(), keyCode);
+}
+
+bool GLFWWindow::ShouldClose() {
+    return glfwWindowShouldClose(this->GetGLFWWindow()) == 0;
+}
+
 

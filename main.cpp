@@ -67,7 +67,7 @@ int main() {
                 GL_FLOAT,
                 GL_FALSE,
                 0,
-                (void *) 0
+                nullptr
         );
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -76,10 +76,7 @@ int main() {
         // Swap buffers
         glfwSwapBuffers(window.GetGLFWWindow());
         glfwPollEvents();
-    } while (
-            glfwGetKey(window.GetGLFWWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-            glfwWindowShouldClose(window.GetGLFWWindow()) == 0
-            );
+    } while (window.GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS && window.ShouldClose());
 
     return 0;
 }
