@@ -33,8 +33,8 @@ int main() {
     // Ensure we can capture the escape key being pressed below
     window.SetInputMode(GLFW_STICKY_KEYS, GL_TRUE);
 
-    // Dark blue background
-    glClearColor(0.1f, 0.3f, 0.4f, 0.0f);
+    // Purple background
+    glClearColor(0.3f, 0.0f, 0.6f, 0.0f);
 
     // VAO
     GLuint VertexArrayID;
